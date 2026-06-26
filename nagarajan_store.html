@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nagarajan Store – Aloor, Kanyakumari</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --leaf: #2D6A4F;
+    --leaf-light: #40916C;
+    --leaf-pale: #D8F3DC;
+    --saffron: #E9742A;
+    --saffron-pale: #FFF1E6;
+    --earth: #8B4513;
+    --cream: #FDF8F0;
+    --white: #FFFFFF;
+    --ink: #1A1A1A;
+    --ink-mid: #4A4A4A;
+    --ink-soft: #888;
+    --border: #E5DDD0;
+    --radius: 12px;
+    --shadow: 0 2px 16px rgba(0,0,0,0.07);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--leaf);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 62px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  }
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem; font-weight: 700;
+    color: #fff; letter-spacing: 0.01em;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none; font-size: 0.9rem; font-weight: 500;
+    letter-spacing: 0.03em; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: #fff; }
+
+  /* HERO */
+  .hero {
+    background: var(--leaf);
+    padding: 80px 2rem 0;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: end; gap: 3rem;
+    max-width: 1100px; margin: 0 auto;
+    min-height: 460px;
+  }
+  .hero-text { padding-bottom: 64px; }
+  .hero-eyebrow {
+    display: inline-block;
+    background: var(--saffron); color: #fff;
+    font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 4px 14px; border-radius: 20px;
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 900; line-height: 1.1;
+    color: #fff; margin-bottom: 1.1rem;
+  }
+  .hero h1 span { color: #A5D6A7; }
+  .hero-sub {
+    color: rgba(255,255,255,0.78);
+    font-size: 1.05rem; max-width: 400px;
+    margin-bottom: 2rem;
+  }
+  .btn-primary {
+    display: inline-block;
+    background: var(--saffron); color: #fff;
+    font-weight: 600; font-size: 0.95rem;
+    padding: 13px 28px; border-radius: 30px;
+    text-decoration: none; transition: background 0.2s, transform 0.15s;
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: #D4601F; transform: translateY(-1px); }
+
+  .hero-image-block {
+    display: flex; align-items: flex-end; justify-content: center;
+    padding-bottom: 0;
+  }
+  .store-illustration {
+    width: 100%; max-width: 420px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 16px 16px 0 0;
+    padding: 2.5rem 2rem 0;
+    display: flex; flex-direction: column; align-items: center;
+    min-height: 280px;
+  }
+  .store-sign {
+    background: var(--saffron);
+    color: #fff; font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 700;
+    padding: 14px 32px; border-radius: 8px;
+    text-align: center; margin-bottom: 1.5rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    width: 100%;
+  }
+  .store-sign small { display: block; font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 500; margin-top: 4px; opacity: 0.85; }
+  .shelves {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 10px; width: 100%;
+  }
+  .shelf-item {
+    background: rgba(255,255,255,0.15);
+    border-radius: 8px; padding: 10px 6px;
+    text-align: center; color: #fff;
+    font-size: 1.6rem;
+  }
+  .shelf-item span { display: block; font-size: 0.6rem; opacity: 0.8; margin-top: 2px; }
+
+  /* BANNER */
+  .hero-wave { background: var(--leaf); }
+  .hero-wave svg { display: block; }
+
+  /* STATS */
+  .stats-bar {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+  }
+  .stats-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1rem; text-align: center;
+  }
+  .stat-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 700; color: var(--leaf);
+  }
+  .stat-label { font-size: 0.82rem; color: var(--ink-soft); margin-top: 2px; }
+
+  /* SECTIONS */
+  section { padding: 70px 2rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-tag {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--saffron);
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 700;
+    color: var(--ink); margin-bottom: 1rem;
+  }
+  .section-sub { color: var(--ink-mid); max-width: 560px; font-size: 1rem; }
+
+  /* CATEGORIES */
+  #categories { background: var(--cream); }
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px; margin-top: 2.5rem;
+  }
+  .cat-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem 1rem;
+    text-align: center;
+    cursor: default; transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .cat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+  .cat-icon { font-size: 2.4rem; margin-bottom: 0.6rem; }
+  .cat-name { font-size: 0.9rem; font-weight: 600; color: var(--ink); }
+  .cat-count { font-size: 0.75rem; color: var(--ink-soft); margin-top: 2px; }
+
+  /* SPECIALS */
+  #specials { background: var(--white); }
+  .specials-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px; margin-top: 2.5rem;
+  }
+  .special-card {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: var(--radius); overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .special-card:hover { box-shadow: var(--shadow); }
+  .special-img {
+    background: var(--leaf-pale);
+    height: 110px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem;
+  }
+  .special-body { padding: 1rem; }
+  .special-name { font-weight: 600; font-size: 0.95rem; }
+  .special-price { color: var(--leaf); font-weight: 700; font-size: 1.1rem; margin-top: 4px; }
+  .special-orig { color: var(--ink-soft); text-decoration: line-through; font-size: 0.85rem; margin-left: 6px; }
+  .badge-sale {
+    display: inline-block;
+    background: var(--saffron); color: #fff;
+    font-size: 0.7rem; font-weight: 600; padding: 2px 8px;
+    border-radius: 20px; margin-bottom: 6px;
+  }
+
+  /* WHY US */
+  #why { background: var(--leaf-pale); }
+  .why-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px; margin-top: 2.5rem;
+  }
+  .why-card {
+    background: var(--white);
+    border-radius: var(--radius); padding: 1.5rem;
+    border: 1px solid var(--border);
+  }
+  .why-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: var(--leaf-pale); display: flex;
+    align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 1rem;
+  }
+  .why-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.3rem; }
+  .why-card p { font-size: 0.88rem; color: var(--ink-mid); line-height: 1.6; }
+
+  /* CONTACT */
+  #contact { background: var(--ink); color: #fff; }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 3rem; align-items: start;
+  }
+  .contact-info h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 700; color: #fff;
+    margin-bottom: 1rem;
+  }
+  .contact-info p { color: rgba(255,255,255,0.65); margin-bottom: 1.8rem; }
+  .contact-detail {
+    display: flex; align-items: flex-start; gap: 12px;
+    margin-bottom: 1.2rem;
+  }
+  .contact-icon {
+    width: 38px; height: 38px; border-radius: 8px;
+    background: rgba(255,255,255,0.08);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .contact-detail-text strong { display: block; color: #fff; font-size: 0.9rem; }
+  .contact-detail-text span { color: rgba(255,255,255,0.6); font-size: 0.85rem; }
+  .map-placeholder {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius);
+    padding: 2.5rem 2rem;
+    text-align: center; color: rgba(255,255,255,0.5);
+  }
+  .map-placeholder .map-emoji { font-size: 3rem; margin-bottom: 1rem; }
+  .map-placeholder p { font-size: 0.9rem; }
+  .map-placeholder a {
+    color: #A5D6A7; text-decoration: underline;
+    font-size: 0.88rem; display: block; margin-top: 0.8rem;
+  }
+  .hours-table { width: 100%; margin-top: 1rem; border-collapse: collapse; }
+  .hours-table td { padding: 6px 0; font-size: 0.88rem; color: rgba(255,255,255,0.65); }
+  .hours-table td:last-child { text-align: right; color: #A5D6A7; font-weight: 500; }
+  .hours-table tr:not(:last-child) td { border-bottom: 1px solid rgba(255,255,255,0.07); }
+
+  /* FOOTER */
+  footer {
+    background: #111; padding: 1.5rem 2rem;
+    text-align: center; color: rgba(255,255,255,0.35);
+    font-size: 0.8rem;
+  }
+  footer span { color: var(--saffron); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; padding: 50px 1.5rem 0; }
+    .hero-image-block { display: none; }
+    .stats-inner { grid-template-columns: 1fr 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    nav { padding: 0 1.2rem; }
+    .nav-links { gap: 1rem; }
+    .nav-links a { font-size: 0.8rem; }
+  }
+  @media (max-width: 500px) {
+    .nav-links { display: none; }
+    .stats-inner { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">Nagarajan Store</a>
+  <ul class="nav-links">
+    <li><a href="#categories">Products</a></li>
+    <li><a href="#specials">Offers</a></li>
+    <li><a href="#why">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div style="background: var(--leaf);">
+  <div class="hero">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Aloor, Kanyakumari District</div>
+      <h1>Your <span>neighbourhood</span> store, always fresh</h1>
+      <p class="hero-sub">From fresh vegetables and rice to daily essentials — everything you need, right in the heart of Aloor.</p>
+      <a href="#categories" class="btn-primary">Browse Products →</a>
+    </div>
+    <div class="hero-image-block">
+      <div class="store-illustration">
+        <div class="store-sign">
+          Nagarajan Store
+          <small>📍 Aloor · Kanyakumari</small>
+        </div>
+        <div class="shelves">
+          <div class="shelf-item">🌾<span>Rice</span></div>
+          <div class="shelf-item">🧅<span>Onion</span></div>
+          <div class="shelf-item">🥥<span>Coconut</span></div>
+          <div class="shelf-item">🛢️<span>Oil</span></div>
+          <div class="shelf-item">🍌<span>Fruits</span></div>
+          <div class="shelf-item">🫙<span>Dals</span></div>
+          <div class="shelf-item">🧴<span>Care</span></div>
+          <div class="shelf-item">☕<span>Tea</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <svg viewBox="0 0 1200 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:60px;">
+    <path d="M0,60 L0,20 Q300,60 600,30 Q900,0 1200,30 L1200,60 Z" fill="#FDF8F0"/>
+  </svg>
+</div>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div>
+      <div class="stat-value">500+</div>
+      <div class="stat-label">Products in stock</div>
+    </div>
+    <div>
+      <div class="stat-value">10+</div>
+      <div class="stat-label">Years of service</div>
+    </div>
+    <div>
+      <div class="stat-value">Daily</div>
+      <div class="stat-label">Fresh arrivals</div>
+    </div>
+    <div>
+      <div class="stat-value">6 AM</div>
+      <div class="stat-label">Opens every day</div>
+    </div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section id="categories">
+  <div class="section-inner">
+    <div class="section-tag">What we carry</div>
+    <h2 class="section-title">All your daily needs</h2>
+    <p class="section-sub">From the kitchen to the bathroom shelf — stocked fresh, priced fairly.</p>
+    <div class="categories-grid">
+      <div class="cat-card">
+        <div class="cat-icon">🌾</div>
+        <div class="cat-name">Rice & Grains</div>
+        <div class="cat-count">Ponni, Sona Masoori & more</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">🫘</div>
+        <div class="cat-name">Dals & Pulses</div>
+        <div class="cat-count">Toor, Moong, Chana & more</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">🥬</div>
+        <div class="cat-name">Vegetables</div>
+        <div class="cat-count">Locally sourced, daily fresh</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">🍌</div>
+        <div class="cat-name">Fruits</div>
+        <div class="cat-count">Seasonal and tropical picks</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">🛢️</div>
+        <div class="cat-name">Oils & Ghee</div>
+        <div class="cat-count">Coconut, sunflower, sesame</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">🧂</div>
+        <div class="cat-name">Spices & Masala</div>
+        <div class="cat-count">Whole & ground spices</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">☕</div>
+        <div class="cat-name">Tea & Coffee</div>
+        <div class="cat-count">Dust, leaf & filter coffee</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">🧴</div>
+        <div class="cat-name">Personal Care</div>
+        <div class="cat-count">Soaps, shampoo & more</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">🍪</div>
+        <div class="cat-name">Snacks & Biscuits</div>
+        <div class="cat-count">All popular brands</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">🥛</div>
+        <div class="cat-name">Dairy</div>
+        <div class="cat-count">Milk, curd & butter</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">🧹</div>
+        <div class="cat-name">Household</div>
+        <div class="cat-count">Cleaning & home supplies</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">🥥</div>
+        <div class="cat-name">Coconut</div>
+        <div class="cat-count">Fresh, copra & coconut oil</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECIALS -->
+<section id="specials">
+  <div class="section-inner">
+    <div class="section-tag">Today's offers</div>
+    <h2 class="section-title">Fresh deals of the week</h2>
+    <p class="section-sub">Prices updated weekly. Visit the store for the latest rates.</p>
+    <div class="specials-grid">
+      <div class="special-card">
+        <div class="special-img">🌾</div>
+        <div class="special-body">
+          <div class="badge-sale">Best price</div>
+          <div class="special-name">Ponni Raw Rice (5 kg)</div>
+          <div class="special-price">₹ 260 <span class="special-orig">₹ 280</span></div>
+        </div>
+      </div>
+      <div class="special-card">
+        <div class="special-img">🥥</div>
+        <div class="special-body">
+          <div class="badge-sale">Fresh daily</div>
+          <div class="special-name">Coconut Oil (1 litre)</div>
+          <div class="special-price">₹ 210 <span class="special-orig">₹ 230</span></div>
+        </div>
+      </div>
+      <div class="special-card">
+        <div class="special-img">🫘</div>
+        <div class="special-body">
+          <div class="badge-sale">Offer</div>
+          <div class="special-name">Toor Dal (1 kg)</div>
+          <div class="special-price">₹ 148 <span class="special-orig">₹ 160</span></div>
+        </div>
+      </div>
+      <div class="special-card">
+        <div class="special-img">🧂</div>
+        <div class="special-body">
+          <div class="badge-sale">Value pack</div>
+          <div class="special-name">Iodised Salt (1 kg)</div>
+          <div class="special-price">₹ 20 <span class="special-orig">₹ 25</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="section-inner">
+    <div class="section-tag">Why Nagarajan Store</div>
+    <h2 class="section-title">Trusted by the Aloor community</h2>
+    <p class="section-sub">We've been serving families in Aloor for over a decade with honesty and care.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">🌿</div>
+        <h3>Fresh every morning</h3>
+        <p>Vegetables and fruits arrive daily from local farms and the Kanyakumari market.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💰</div>
+        <h3>Fair prices</h3>
+        <p>We keep our margins honest so every family in Aloor can afford quality groceries.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🤝</div>
+        <h3>Personal service</h3>
+        <p>We know our customers by name. Come in and we'll help you find exactly what you need.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📦</div>
+        <h3>Bulk orders welcome</h3>
+        <p>Special rates for weddings, functions, and bulk household buying. Just ask!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h2>Visit us in Aloor</h2>
+        <p>Drop by anytime — we're open every day and always happy to help.</p>
+
+        <div class="contact-detail">
+          <div class="contact-icon">📍</div>
+          <div class="contact-detail-text">
+            <strong>Address</strong>
+            <span>Nagarajan Store, Aloor, Kanyakumari District, Tamil Nadu</span>
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="contact-icon">📞</div>
+          <div class="contact-detail-text">
+            <strong>Phone</strong>
+            <span>Add your number here</span>
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="contact-icon">🕐</div>
+          <div class="contact-detail-text">
+            <strong>Store hours</strong>
+          </div>
+        </div>
+
+        <table class="hours-table">
+          <tr><td>Monday – Saturday</td><td>6:00 AM – 9:00 PM</td></tr>
+          <tr><td>Sunday</td><td>6:00 AM – 1:00 PM</td></tr>
+        </table>
+      </div>
+
+      <div>
+        <div class="map-placeholder">
+          <div class="map-emoji">🗺️</div>
+          <p style="color:rgba(255,255,255,0.55); font-size:0.95rem;">Nagarajan Store<br>Aloor, Kanyakumari District</p>
+          <a href="https://www.google.com/maps/search/Aloor+Kanyakumari" target="_blank">Open in Google Maps →</a>
+        </div>
+
+        <div style="margin-top: 1.5rem; background: rgba(255,255,255,0.05); border-radius: var(--radius); padding: 1.5rem; border: 1px solid rgba(255,255,255,0.08);">
+          <p style="color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em;">Also serving</p>
+          <div style="display:flex; flex-wrap:wrap; gap:8px;">
+            <span style="background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.7); font-size:0.82rem; padding:5px 12px; border-radius:20px;">Aloor village</span>
+            <span style="background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.7); font-size:0.82rem; padding:5px 12px; border-radius:20px;">Nearby hamlets</span>
+            <span style="background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.7); font-size:0.82rem; padding:5px 12px; border-radius:20px;">Kanyakumari district</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span>Nagarajan Store</span> · Aloor, Kanyakumari District, Tamil Nadu · All rights reserved</p>
+</footer>
+
+</body>
+</html>
